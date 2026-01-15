@@ -267,24 +267,24 @@ function EmptyMoviesState({ groupId, groupName }: { groupId: string; groupName: 
           {/* CTA Button */}
           <Link
             href={`/grupos/${groupId}/registrar`}
-            className="flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-[#16C7D9] to-[#0EA5E9] hover:from-[#14B8C9] hover:to-[#0D96D9] rounded-2xl text-base font-bold text-[#0B0D10] shadow-lg shadow-[#16C7D9]/25 hover:shadow-[#16C7D9]/40 transition-all hover:scale-105"
+            className="flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#16C7D9] to-[#0EA5E9] hover:from-[#14B8C9] hover:to-[#0D96D9] rounded-xl sm:rounded-2xl text-sm sm:text-base font-bold text-[#0B0D10] shadow-lg shadow-[#16C7D9]/25 hover:shadow-[#16C7D9]/40 transition-all hover:scale-105"
           >
-            <Plus className="w-5 h-5" />
-            Registrar la primera película
+            <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
+            Registrar primera película
           </Link>
 
           {/* Decorative elements */}
-          <div className="flex items-center gap-8 mt-10 text-[#4A5568]">
+          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 mt-8 sm:mt-10 text-[#4A5568]">
             <div className="flex items-center gap-2">
               <Star className="w-4 h-4" />
               <span className="text-xs">Califiquen juntos</span>
             </div>
-            <div className="w-1 h-1 rounded-full bg-[#4A5568]" />
+            <div className="hidden sm:block w-1 h-1 rounded-full bg-[#4A5568]" />
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4" />
               <span className="text-xs">Compartan opiniones</span>
             </div>
-            <div className="w-1 h-1 rounded-full bg-[#4A5568]" />
+            <div className="hidden sm:block w-1 h-1 rounded-full bg-[#4A5568]" />
             <div className="flex items-center gap-2">
               <Film className="w-4 h-4" />
               <span className="text-xs">Construyan historia</span>
