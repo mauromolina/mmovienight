@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { getTable } from '@/lib/supabase/db'
 import { Navbar } from '@/components/layout/navbar'
+import { ScrollToTop } from '@/components/layout/scroll-to-top'
 import type { Profile } from '@/types'
 
 export default async function DashboardLayout({
@@ -47,6 +48,7 @@ export default async function DashboardLayout({
 
   return (
     <div className="min-h-screen bg-[#0B0D10]">
+      <ScrollToTop />
       {/* Subtle gradient overlay */}
       <div className="fixed inset-0 bg-gradient-to-br from-[#16C7D9]/5 via-transparent to-[#0EA5E9]/5 pointer-events-none" />
 
