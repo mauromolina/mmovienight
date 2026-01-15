@@ -6,6 +6,7 @@ import { createClient } from '@/lib/supabase/server'
 import { getGroupById, getUserMembership } from '@/services/groups'
 import { getGroupWatchlist } from '@/services/movies'
 import { RemoveFromWatchlistButton } from './remove-from-watchlist-button'
+import { MovieRoulette } from './movie-roulette'
 
 interface GroupWatchlistPageProps {
   params: Promise<{ groupId: string }>
@@ -59,16 +60,25 @@ export default async function GroupWatchlistPage({ params }: GroupWatchlistPageP
       </nav>
 
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-3">
-          <span className="text-[#F2F4F6]">Watchlist </span>
-          <span className="text-[#16C7D9]">del grupo</span>
-        </h1>
-        <p className="text-[#9AA3AD] text-base lg:text-lg max-w-2xl leading-relaxed">
-          {watchlistMovies.length > 0
-            ? `${watchlistMovies.length} ${watchlistMovies.length === 1 ? 'película propuesta' : 'películas propuestas'} para la próxima función.`
-            : 'Películas propuestas por el grupo para ver en la próxima función.'}
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-8">
+        <div>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-3">
+            <span className="text-[#F2F4F6]">Watchlist </span>
+            <span className="text-[#16C7D9]">del grupo</span>
+          </h1>
+          <p className="text-[#9AA3AD] text-base lg:text-lg max-w-2xl leading-relaxed">
+            {watchlistMovies.length > 0
+              ? `${watchlistMovies.length} ${watchlistMovies.length === 1 ? 'película propuesta' : 'películas propuestas'} para la próxima función.`
+              : 'Películas propuestas por el grupo para ver en la próxima función.'}
+          </p>
+        </div>
+
+        {/* Roulette Button */}
+        {watchlistMovies.length >= 2 && (
+          <div className="flex-shrink-0">
+            <MovieRoulette movies={watchlistMovies} groupId={groupId} />
+          </div>
+        )}
       </div>
 
       {/* Empty State */}

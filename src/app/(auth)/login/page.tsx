@@ -113,7 +113,7 @@ function AuthPageContent() {
             <div className="flex border-b border-[#1A2026] relative">
               <button
                 onClick={() => handleTabChange('login')}
-                className={`flex-1 py-4 text-sm font-semibold tracking-wide transition-colors duration-200 ${
+                className={`flex-1 py-4 text-sm font-semibold tracking-wide transition-colors duration-200 cursor-pointer ${
                   activeTab === 'login' ? 'text-[#16C7D9]' : 'text-[#A8B0BA] hover:text-[#F2F4F6]'
                 }`}
               >
@@ -121,7 +121,7 @@ function AuthPageContent() {
               </button>
               <button
                 onClick={() => handleTabChange('register')}
-                className={`flex-1 py-4 text-sm font-semibold tracking-wide transition-colors duration-200 ${
+                className={`flex-1 py-4 text-sm font-semibold tracking-wide transition-colors duration-200 cursor-pointer ${
                   activeTab === 'register'
                     ? 'text-[#16C7D9]'
                     : 'text-[#A8B0BA] hover:text-[#F2F4F6]'
@@ -167,7 +167,7 @@ function AuthPageContent() {
               <button
                 onClick={handleGoogleLogin}
                 disabled={isGoogleLoading}
-                className="w-full flex items-center justify-center gap-3 py-3 px-4 mb-6 bg-[#1A2026] hover:bg-[#1F262D] border border-[#2A3038] rounded-xl text-sm font-medium text-[#F2F4F6] transition-all hover:border-[#3A4048] disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-3 py-3 px-4 mb-6 bg-[#1A2026] hover:bg-[#1F262D] border border-[#2A3038] rounded-xl text-sm font-medium text-[#F2F4F6] transition-all hover:border-[#3A4048] disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path
@@ -247,7 +247,7 @@ function AuthPageContent() {
                     {activeTab === 'login' && (
                       <button
                         type="button"
-                        className="text-xs text-[#16C7D9] hover:text-[#16C7D9]/80 transition-colors"
+                        className="text-xs text-[#16C7D9] hover:text-[#16C7D9]/80 transition-colors cursor-pointer"
                       >
                         ¿Te olvidaste?
                       </button>
@@ -264,7 +264,7 @@ function AuthPageContent() {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#4A5568] hover:text-[#A8B0BA] transition-colors"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#4A5568] hover:text-[#A8B0BA] transition-colors cursor-pointer"
                     >
                       {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                     </button>
@@ -316,7 +316,7 @@ function AuthPageContent() {
                 <button
                   type="submit"
                   disabled={isPending}
-                  className="w-full py-4 mt-2 bg-gradient-to-r from-[#16C7D9] to-[#0EA5E9] hover:from-[#14B8C9] hover:to-[#0D96D9] text-[#0B0D10] font-bold text-sm tracking-wide rounded-xl shadow-lg shadow-[#16C7D9]/25 hover:shadow-[#16C7D9]/40 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-4 mt-2 bg-gradient-to-r from-[#16C7D9] to-[#0EA5E9] hover:from-[#14B8C9] hover:to-[#0D96D9] text-[#0B0D10] font-bold text-sm tracking-wide rounded-xl shadow-lg shadow-[#16C7D9]/25 hover:shadow-[#16C7D9]/40 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isPending ? (
                     <span className="flex items-center justify-center gap-2">

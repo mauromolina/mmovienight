@@ -47,7 +47,7 @@ export default function JoinWithCodeButton({ variant = 'default' }: JoinWithCode
       <>
         <button
           onClick={() => setIsModalOpen(true)}
-          className="inline-flex items-center gap-2 text-sm font-semibold text-[#D4AF37] hover:text-[#E5C158] transition-colors group/link"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-[#D4AF37] hover:text-[#E5C158] transition-colors group/link cursor-pointer"
         >
           Ingresar código
           <svg
@@ -90,7 +90,7 @@ export default function JoinWithCodeButton({ variant = 'default' }: JoinWithCode
     <>
       <button
         onClick={() => setIsModalOpen(true)}
-        className="flex items-center justify-center gap-2 px-5 py-3 bg-[#14181D] hover:bg-[#1A2026] border border-[#2A3038] hover:border-[#3A4048] rounded-xl text-sm font-medium text-[#F2F4F6] transition-all"
+        className="flex items-center justify-center gap-2 px-5 py-3 bg-[#14181D] hover:bg-[#1A2026] border border-[#2A3038] hover:border-[#3A4048] rounded-xl text-sm font-medium text-[#F2F4F6] transition-all cursor-pointer"
       >
         <Link2 className="w-4 h-4" />
         Unirse con código

@@ -202,7 +202,7 @@ function NewGroupCard() {
   return (
     <div className="group h-full">
       <div className="relative bg-[#14181D]/50 rounded-2xl border-2 border-dashed border-[#2A3038] hover:border-[#16C7D9]/50 transition-all h-full flex flex-col items-center justify-center p-6 text-center">
-        <div className="w-16 h-16 rounded-full bg-gradient-to-b from-[#1A1E24] to-[#13161B] border border-[#2A3038]/60 flex items-center justify-center mb-4 group-hover:border-[#16C7D9]/40 transition-all shadow-inner">
+        <div className="w-16 h-16 rounded-full bg-gradient-to-b from-[#1A1E24] to-[#13161B] border border-[#2A3038]/60 flex items-center justify-center mb-4 group-hover:border-[#16C7D9]/40 transition-all shadow-inner cursor-pointer">
           <Plus className="w-8 h-8 text-[#16C7D9]" />
         </div>
         <h3 className="text-lg font-bold text-[#F2F4F6] mb-2 group-hover:text-[#16C7D9] transition-colors">
