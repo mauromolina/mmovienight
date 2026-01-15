@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
           .eq('user_id', user.id)
 
         const totalRatings = avgData?.length || 0
-        const averageScore = totalRatings > 0
+        const averageScore = totalRatings > 0 && avgData
           ? avgData.reduce((sum: number, r: any) => sum + r.score, 0) / totalRatings
           : 0
 
@@ -146,7 +146,7 @@ export async function GET(request: NextRequest) {
       .eq('user_id', user.id)
 
     const totalRatings = avgData?.length || 0
-    const averageScore = totalRatings > 0
+    const averageScore = totalRatings > 0 && avgData
       ? avgData.reduce((sum: number, r: any) => sum + r.score, 0) / totalRatings
       : 0
 

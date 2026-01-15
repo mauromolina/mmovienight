@@ -398,7 +398,7 @@ export interface RatingWithProfile extends Rating {
   profile: Profile
 }
 
-export interface ScreeningAttendee {
+export interface ScreeningAttendeeWithProfile {
   user_id: string
   profile: Profile
 }
@@ -408,7 +408,7 @@ export interface MovieWithGroupData extends Movie {
   average_rating: number
   rating_count: number
   ratings?: RatingWithProfile[]
-  attendees?: ScreeningAttendee[]
+  attendees?: ScreeningAttendeeWithProfile[]
 }
 
 export interface WatchlistItemWithMovie extends WatchlistItem {
