@@ -40,7 +40,12 @@ function formatRelativeDate(dateStr: string): string {
 import { createClient } from '@/lib/supabase/server'
 import { getTable } from '@/lib/supabase/db'
 import { getUserGroups } from '@/services/groups'
-import { getUserStats, getUserRecentRatings, getUserTopGenres, getUserFavorites } from '@/services/movies'
+import {
+  getUserStats,
+  getUserRecentRatings,
+  getUserTopGenres,
+  getUserFavorites,
+} from '@/services/movies'
 
 export default async function ProfilePage() {
   const supabase = await createClient()
@@ -53,25 +58,35 @@ export default async function ProfilePage() {
   }
 
   // Get user's profile, groups, stats, ratings, genres and favorites in parallel
-  const [profileData, groups, userStats, recentRatingsData, topGenres, favoriteMovies] = await Promise.all([
-    getTable(supabase, 'profiles').select('*').eq('id', user.id).single(),
-    getUserGroups(),
-    getUserStats(user.id),
-    getUserRecentRatings(user.id, 5),
-    getUserTopGenres(user.id, 5),
-    getUserFavorites(user.id),
-  ])
+  const [profileData, groups, userStats, recentRatingsData, topGenres, favoriteMovies] =
+    await Promise.all([
+      getTable(supabase, 'profiles').select('*').eq('id', user.id).single(),
+      getUserGroups(),
+      getUserStats(user.id),
+      getUserRecentRatings(user.id, 5),
+      getUserTopGenres(user.id, 5),
+      getUserFavorites(user.id),
+    ])
 
   const dbProfile = profileData.data
 
   // User profile data - prioritize database values, fallback to user metadata
   const profile = {
-    name: dbProfile?.display_name || user.user_metadata?.full_name || user.email?.split('@')[0] || 'Usuario',
+    name:
+      dbProfile?.display_name ||
+      user.user_metadata?.full_name ||
+      user.email?.split('@')[0] ||
+      'Usuario',
     bio: dbProfile?.bio || null,
     avatar: dbProfile?.avatar_url || user.user_metadata?.avatar_url || null,
-    banner: dbProfile?.banner_url || 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1920&q=80',
+    banner:
+      dbProfile?.banner_url ||
+      'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1920&q=80',
     isVerified: false,
-    memberSince: new Date(user.created_at).toLocaleDateString('es-AR', { month: 'long', year: 'numeric' }),
+    memberSince: new Date(user.created_at).toLocaleDateString('es-AR', {
+      month: 'long',
+      year: 'numeric',
+    }),
   }
 
   // Stats from database
@@ -102,16 +117,10 @@ export default async function ProfilePage() {
   return (
     <div className="animate-fade-in pb-12">
       {/* Profile Hero - Full Width Banner */}
-      <div className="relative w-screen left-1/2 -translate-x-1/2 -mt-8 mb-8 overflow-hidden">
+      <div className="relative z-10 w-screen left-1/2 -translate-x-1/2 -mt-8 mb-8">
         {/* Background - User's banner */}
         <div className="absolute inset-0">
-          <Image
-            src={profile.banner}
-            alt="Profile banner"
-            fill
-            className="object-cover"
-            priority
-          />
+          <Image src={profile.banner} alt="Profile banner" fill className="object-cover" priority />
         </div>
         {/* Gradient overlays for readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B0D10] via-[#0B0D10]/70 to-transparent" />
@@ -164,9 +173,7 @@ export default async function ProfilePage() {
                   {profile.name}
                 </h1>
                 {profile.bio && (
-                  <p className="text-[#9AA3AD] text-sm sm:text-base mb-2 max-w-md">
-                    {profile.bio}
-                  </p>
+                  <p className="text-[#9AA3AD] text-sm sm:text-base mb-2 max-w-md">{profile.bio}</p>
                 )}
                 <p className="text-[#6B7280] text-xs sm:text-sm flex items-center justify-center sm:justify-start gap-2">
                   <Calendar className="w-3.5 h-3.5" />
@@ -220,9 +227,9 @@ export default async function ProfilePage() {
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid gap-6 sm:gap-8 lg:grid-cols-3">
+      <div className="grid gap-6 sm:gap-8 lg:grid-cols-3 min-w-0">
         {/* Left Column - Movies & Ratings */}
-        <div className="lg:col-span-2 space-y-6 sm:space-y-10">
+        <div className="lg:col-span-2 space-y-6 sm:space-y-10 min-w-0 overflow-hidden">
           {/* Favorite Movies */}
           <section>
             <div className="flex items-center justify-between mb-4 sm:mb-5">
@@ -249,9 +256,7 @@ export default async function ProfilePage() {
                       <Heart className="w-10 h-10 text-[#4A5568]" />
                     </div>
                   </div>
-                  <h3 className="text-lg font-bold text-[#F2F4F6] mb-2">
-                    Sin favoritas todavía
-                  </h3>
+                  <h3 className="text-lg font-bold text-[#F2F4F6] mb-2">Sin favoritas todavía</h3>
                   <p className="text-sm text-[#6B7280] max-w-sm mb-4">
                     Explorá películas y marcá tus favoritas para verlas acá.
                   </p>
@@ -370,7 +375,7 @@ export default async function ProfilePage() {
                       <div className="flex-1 min-w-0 flex flex-col">
                         {/* Header row: Title + Date */}
                         <div className="flex items-start justify-between gap-2 mb-2">
-                          <h3 className="text-sm sm:text-base font-semibold text-[#F2F4F6] group-hover:text-[#16C7D9] transition-colors line-clamp-1">
+                          <h3 className="text-sm sm:text-base font-semibold text-[#F2F4F6] group-hover:text-[#16C7D9] transition-colors line-clamp-1 min-w-0">
                             {rating.movie.title}
                           </h3>
                           <span className="text-[10px] sm:text-xs text-[#4A5568] whitespace-nowrap flex-shrink-0">
@@ -403,22 +408,20 @@ export default async function ProfilePage() {
                             &ldquo;{rating.comment}&rdquo;
                           </p>
                         ) : (
-                          <p className="text-xs text-[#4A5568] italic mb-3">
-                            Sin reseña escrita
-                          </p>
+                          <p className="text-xs text-[#4A5568] italic mb-3">Sin reseña escrita</p>
                         )}
 
                         {/* Social indicators */}
-                        <div className="flex items-center gap-4 mt-auto">
-                          <div className="flex items-center gap-1.5 text-[#6B7280]">
+                        <div className="flex items-center gap-3 sm:gap-4 mt-auto">
+                          <div className="flex items-center gap-1.5 text-[#6B7280] flex-shrink-0">
                             <ThumbsUp className="w-3.5 h-3.5" />
                             <span className="text-xs">{rating.likes}</span>
                           </div>
-                          <div className="flex items-center gap-1.5 text-[#6B7280]">
+                          <div className="flex items-center gap-1.5 text-[#6B7280] flex-shrink-0">
                             <MessageCircle className="w-3.5 h-3.5" />
                             <span className="text-xs">{rating.comments}</span>
                           </div>
-                          <span className="text-[10px] text-[#4A5568] ml-auto">
+                          <span className="text-[10px] text-[#4A5568] ml-auto truncate min-w-0">
                             en {rating.group.name}
                           </span>
                         </div>
@@ -432,7 +435,7 @@ export default async function ProfilePage() {
         </div>
 
         {/* Right Column - Genres & Circles */}
-        <div className="space-y-4 sm:space-y-6">
+        <div className="space-y-4 sm:space-y-6 min-w-0">
           {/* Top Genres */}
           <div className="rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#14181D] to-[#12151A] border border-[#1E2328]/60 p-4 sm:p-6">
             <h3 className="text-base sm:text-lg font-bold text-[#F2F4F6] mb-4 sm:mb-6">
@@ -472,9 +475,7 @@ export default async function ProfilePage() {
           {/* Active Circles */}
           <div className="rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#14181D] to-[#12151A] border border-[#1E2328]/60 p-4 sm:p-6">
             <div className="flex items-center justify-between mb-4 sm:mb-6">
-              <h3 className="text-base sm:text-lg font-bold text-[#F2F4F6]">
-                Círculos activos
-              </h3>
+              <h3 className="text-base sm:text-lg font-bold text-[#F2F4F6]">Círculos activos</h3>
               <Link
                 href="/grupos"
                 className="text-xs text-[#6B7280] hover:text-[#16C7D9] transition-colors"
@@ -514,7 +515,8 @@ export default async function ProfilePage() {
                           {circle.name}
                         </p>
                         <p className="text-xs text-[#6B7280]">
-                          {circle.member_count || 1} {(circle.member_count || 1) === 1 ? 'miembro' : 'miembros'}
+                          {circle.member_count || 1}{' '}
+                          {(circle.member_count || 1) === 1 ? 'miembro' : 'miembros'}
                         </p>
                       </div>
                       <ChevronRight className="w-4 h-4 text-[#4A5568] group-hover:text-[#16C7D9] transition-colors" />
