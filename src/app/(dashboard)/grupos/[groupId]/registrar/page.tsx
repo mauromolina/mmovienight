@@ -429,17 +429,17 @@ export default function RegisterWatchedPage() {
           </section>
 
           {/* Date Section */}
-          <section>
+          <section className="overflow-hidden">
             <h2 className="text-sm font-semibold text-[#9AA3AD] uppercase tracking-wider mb-4">
               Fecha de visualización
             </h2>
-            <div className="relative">
-              <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#4A5568] pointer-events-none" />
+            <div className="relative max-w-full sm:max-w-72">
+              <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#4A5568] pointer-events-none z-10" />
               <input
                 type="date"
                 value={watchDate}
                 onChange={(e) => setWatchDate(e.target.value)}
-                className="w-full sm:w-72 pl-12 pr-4 py-4 bg-[#0B0D10]/80 backdrop-blur-sm border-2 border-[#1E2328] rounded-2xl text-[#F2F4F6] focus:outline-none focus:border-[#16C7D9] transition-colors cursor-pointer [color-scheme:dark]"
+                className="w-full pl-12 pr-4 py-4 bg-[#0B0D10]/80 backdrop-blur-sm border-2 border-[#1E2328] rounded-2xl text-[#F2F4F6] focus:outline-none focus:border-[#16C7D9] transition-colors cursor-pointer [color-scheme:dark] appearance-none"
               />
             </div>
           </section>
